@@ -3,10 +3,8 @@ class Show < ActiveRecord::Base
   has_many :actors, through: :characters
   
   def actors_list
-    actors_list = []
-    array_of_actors = self.actors {|actors| actors.full_name}
-    actors_list << array_of_actors
-    actors_list
+    self.actors.collect do |actor|
+     "#{actor.first_name} #{actor.last_name}"
   end 
   
 end
